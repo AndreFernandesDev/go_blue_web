@@ -1,0 +1,12 @@
+package components
+
+import "github.com/AndreFernandesDev/boilerplate_web/internal/types"
+
+templ Home(v *types.ViewData) {
+	@Layout(v) {
+		<div class="min-h-screen grid place-content-center gap-4">
+			<a href="/auth/login/discord" class="btn">Login with discord</a>
+			<a href="/auth/login/twitterv2" class="btn">Login with X</a>
+		</div>
+	}
+}

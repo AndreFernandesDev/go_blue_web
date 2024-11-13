@@ -1,0 +1,32 @@
+package components
+
+import "github.com/AndreFernandesDev/boilerplate_web/internal/types"
+
+templ Layout(v *types.ViewData) {
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet"/>
+			<link rel="stylesheet" href="/assets/styles.css"/>
+		</head>
+		<body>
+			if len(v.Flash) > 0 {
+				<div class="fixed top-0 inset-x-0 bg-primary p-4 text-primary-foreground">
+					{ v.Flash }
+				</div>
+			}
+			{ children... }
+			if v.IsAuthenticated {
+				<div class="fixed bottom-0 p-4 inset-x-0 border-t">
+					<form action="/user/logout" method="POST">
+						<input type="hidden" name="csrf_token" value="{{.CSRFToken}}"/>
+						<button class="btn">Logout</button>
+					</form>
+				</div>
+			}
+			<script type="text/javascript" src="/assets/index.js"></script>
+		</body>
+	</html>
+}
